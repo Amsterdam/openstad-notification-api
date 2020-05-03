@@ -21,26 +21,26 @@ services:
     volumes:
       - database:/var/lib/mysql
     networks:
-      - database
+      - openstad
 
-  image:
-    build: image
+  app:
     environment:
       ENVIRONMENT: "development"
-      PORT_API: "${IMAGE_PORT_API}"
-      PORT_IMAGE_SERVER: "${IMAGE_PORT_STEAM}"
-      APP_URL: "${IMAGE_APP_URL}"
-      #needs to best to network name in depends_on of mysql
       DB_HOST: "${MYSQL_HOST}"
       DB_USER: "root"
       DB_PASSWORD: "${MYSQL_PASSWORD}"
       DB_NAME: "${IMAGE_DB_NAME}"
     volumes:
       - ./image/images:/app/images
+    build: .
     ports:
-      - ${IMAGE_PORT_API}:${IMAGE_PORT_API}
+      - 9090:9090
     restart: unless-stopped
     networks:
-      - database
+      - openstad
     depends_on:
       - "mysql"
+volumes:
+  database:
+networks:
+  openstad:
