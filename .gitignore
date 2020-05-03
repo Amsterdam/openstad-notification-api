@@ -21,6 +21,8 @@
 modules.xml
 .idea/*
 
+### Dotenv ###
+.env
 
 # Dependency directories
 node_modules/
