@@ -1,3 +1,5 @@
+import { RestFulController } from './RestFulController';
+
 export function restFulRoutes(controllers) {
   const routes = [];
 
@@ -9,9 +11,10 @@ export function restFulRoutes(controllers) {
     const controller = controllers[controllerKey];
 
     if (controller instanceof RestFulController) {
-      const restDir = `/${controller.restDir}`;
+      const restDir = `/${controller.restDir()}`;
 
-      if (controller.hasOwnProperty('find')) {
+      if (typeof controller.find === 'function') {
+        console.log('find')
         routes.push({
           path: `${restDir}/find/:id`,
           method: "get",
@@ -19,15 +22,14 @@ export function restFulRoutes(controllers) {
         });
       }
 
-      if (controller.hasOwnProperty('list')) {
+      if (typeof controller.list === 'function') {
         routes.push({
           path: `${restDir}/list`,
           method: 'get',
           action: controller.list,
         });
       }
-
-      if (controller.hasOwnProperty('create')) {
+      if (typeof controller.create === 'function') {
         routes.push({
           path: `${restDir}/create`,
           method: "post",
@@ -35,7 +37,7 @@ export function restFulRoutes(controllers) {
         });
       }
 
-      if (controller.hasOwnProperty('update')) {
+      if (typeof controller.update === 'function') {
         routes.push({
           path: `${restDir}/update`,
           method: "post",
@@ -43,10 +45,10 @@ export function restFulRoutes(controllers) {
         });
       }
 
-      if (controller.hasOwnProperty('delete')) {
+      if (typeof controller.delete === 'function') {
         routes.push({
           path: `${restDir}/delete`,
-          method: "delete",
+          method: "post",
           action: controller.delete
         });
       }

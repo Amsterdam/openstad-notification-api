@@ -8,7 +8,7 @@ const controllers = {
 
 export function appRoutes() {
   return [
-    // ...restFulRoutes(controllers),
+    ...restFulRoutes(controllers),
     ...eventRoutes(controllers.event),
   ];
 }
