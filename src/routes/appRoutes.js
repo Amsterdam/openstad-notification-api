@@ -1,7 +1,7 @@
-import { restFullRoutes } from './restFullRoutes';
+import { restFulRoutes } from './restFulRoutes';
 
 export function appRoutes() {
   return [
-    ...restFullRoutes(controllers),
+    ...restFulRoutes(controllers),
   ];
 }

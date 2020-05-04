@@ -1,4 +1,4 @@
-export function restFullRoutes(controllers) {
+export function restFulRoutes(controllers) {
   const routes = [];
 
   for (let controllerKey in controllers) {
@@ -8,7 +8,7 @@ export function restFullRoutes(controllers) {
 
     const controller = controllers[controllerKey];
 
-    if (controller instanceof RestController) {
+    if (controller instanceof RestFulController) {
       const restDir = `/${controller.restDir}`;
 
       if (controller.hasOwnProperty('find')) {
