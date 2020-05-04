@@ -1,13 +1,10 @@
 export class RestFulController {
-  entity;
-  restDir;
-
   /**
    *
    * @param request
    * @param response
    */
-  find = async (request, response) => {
+  async find(request, response) {
     return response.send(instance);
   };
 
@@ -16,7 +13,7 @@ export class RestFulController {
    * @param request
    * @param response
    */
-  list = async (request, response) => {
+  async create(request, response) {
     return response.send(instance);
   };
 
@@ -25,7 +22,7 @@ export class RestFulController {
    * @param request
    * @param response
    */
-  create = async (request, response) => {
+  async update(request, response) {
     return response.send(instance);
   };
 
@@ -34,7 +31,7 @@ export class RestFulController {
    * @param request
    * @param response
    */
-  update = async (request, response) => {
+  async delete(request, response) {
     return response.send(instance);
-  };
+  }
 }

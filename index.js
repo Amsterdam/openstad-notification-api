@@ -1,7 +1,3 @@
-'use strict';
-
-import { registerRoutes } from './src/utils/registerRoutes';
-
 const express = require('express');
 
 // Constants
@@ -14,8 +10,8 @@ const app = express();
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
-registerRoutes(app);
+// registerRoutes(app);
 
-// app.listen(PORT, HOST);
+app.listen(PORT, HOST);
 console.log('routes: ' + app._router)
-// console.log(`Running on http://${HOST}:${PORT}`);
+console.log(`Running on http://${HOST}:${PORT}`);
