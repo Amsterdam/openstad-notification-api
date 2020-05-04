@@ -36,3 +36,6 @@ typings/
 
 # Optional npm cache directory
 .npm
+
+### dist ##
+dist/*
