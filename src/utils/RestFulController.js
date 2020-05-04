@@ -1,7 +1,6 @@
 export class RestFulController {
   entity;
   restDir;
-  restRelations;
 
   /**
    *

@@ -1,4 +1,4 @@
-import { appRoutes } from './appRoutes';
+import { appRoutes } from '../routes/appRoutes';
 
 export function registerRoutes(app) {
   appRoutes.forEach((route) => {
