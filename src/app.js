@@ -1,4 +1,7 @@
-const express = require('express');
+import 'babel-polyfill';
+import express from 'express';
+
+import { registerRoutes } from './utils/registerRoutes';
 
 // Constants
 const PORT = 9090;
@@ -10,7 +13,7 @@ const app = express();
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
-// registerRoutes(app);
+registerRoutes(app);
 
 app.listen(PORT, HOST);
 console.log('routes: ' + app._router)

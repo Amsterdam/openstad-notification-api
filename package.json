@@ -2,10 +2,10 @@
   "name": "openstadnotification-api",
   "version": "0.1.0",
   "description": "Openstad Notification API",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "build": "babel src -d dist",
-    "start": "npm run build && nodemon dist/index.js",
+    "start": "npm run build && nodemon dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
@@ -22,6 +22,7 @@
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
+    "babel-polyfill": "^6.26.0",
     "nodemon": "^2.0.3"
   }
 }
