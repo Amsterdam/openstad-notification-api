@@ -16,5 +16,9 @@ app.get('/', (req, res) => {
 registerRoutes(app);
 
 app.listen(PORT, HOST);
-console.log('routes: ' + app._router)
+app._router.stack.forEach(function(r){
+  if (r.route && r.route.path){
+    console.log(r.route.path)
+  }
+})
 console.log(`Running on http://${HOST}:${PORT}`);
