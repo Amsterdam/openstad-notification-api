@@ -1,7 +1,6 @@
 {
   "name": "openstadnotification-api",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.1.0",
   "description": "Openstad Notification API",
   "main": "index.js",
   "scripts": {
@@ -9,6 +8,7 @@
     "start:dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "license": "MIT",
   "dependencies": {
     "bookshelf": "^1.1.1",
     "cors": "^2.8.5",
