@@ -1,6 +1,6 @@
 export const restDir = 'events';
 
-export function eventRoutes() {
+export function eventRoutes(eventController) {
   return [
 
   ];
