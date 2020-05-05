@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   mysql:
+    image: "mysql:5"
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_ROOT_DATABASE}"
