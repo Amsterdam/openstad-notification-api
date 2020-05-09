@@ -2,6 +2,8 @@ import httpStatus from 'http-status';
 import db from '../bootstrap/sequelize';
 
 const Resource = db.resource;
+console.log('resource')
+console.log(Resource)
 
 /**
  *
