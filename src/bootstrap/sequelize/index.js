@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 import { databaseConfig } from '../../config/database';
 import { importModels } from './importModels';
+import { syncModels } from './syncModels';
 
 const db = {};
 
@@ -26,6 +27,7 @@ sequelize
   });
 
 importModels(sequelize, db);
+syncModels(sequelize, db);
 
 //
 // // calling all the associate function, in order to make the association between the models

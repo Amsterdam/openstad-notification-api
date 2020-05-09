@@ -14,10 +14,4 @@ export function importModels(sequelize, db) {
 
       db[model.name] = model;
     });
-
-  sequelize.sync({ force: true })
-    .then(() => resourceFactory(db))
-    .then(() => {
-      console.log(`Database & tables created!`);
-    });
 }
