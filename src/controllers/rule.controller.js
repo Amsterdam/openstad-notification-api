@@ -1,22 +1,22 @@
 import httpStatus from 'http-status';
 import db from '../bootstrap/sequelize';
 
-const Event = db.event;
+const Rule = db.rule;
 
 /**
- * Load event and append to req.
+ * Load rule and append to req.
  */
 async function load(req, res, next, id) {
   try {
-    const eventFoundResponse = await Event.findByPk(id);
+    const ruleFoundResponse = await Rule.findByPk(id);
 
-    if (!eventFoundResponse) {
-      const e = new Error('Event does not exist');
+    if (!ruleFoundResponse) {
+      const e = new Error('Rule does not exist');
       e.status = httpStatus.NOT_FOUND;
       return next(e);
     }
 
-    req.event = eventFoundResponse; // eslint-disable-line no-param-reassign
+    req.rule = ruleFoundResponse; // eslint-disable-line no-param-reassign
 
       return next();
   } catch (error) {
@@ -28,69 +28,69 @@ async function load(req, res, next, id) {
 }
 
 /**
- * Get event
- * @returns {Event}
+ * Get rule
+ * @returns {Rule}
  */
 function get(req, res) {
-  return res.json(req.event);
+  return res.json(req.rule);
 }
 
 /**
- * Create new event
- * @property {string} req.body.eventName - The eventName of event.
- * @property {string} req.body.mobileNumber - The mobileNumber of event.
- * @returns {Event}
+ * Create new rule
+ * @property {string} req.body.ruleName - The ruleName of rule.
+ * @property {string} req.body.mobileNumber - The mobileNumber of rule.
+ * @returns {Rule}
  */
 function create(req, res, next) {
-  const event = Event.build({
-    eventName: req.body.eventName,
+  const rule = Rule.build({
+    ruleName: req.body.ruleName,
   });
 
-  event.save()
-    .then(savedEvent => res.json(savedEvent))
+  rule.save()
+    .then(savedRule => res.json(savedRule))
     .catch(e => next(e));
 }
 
 /**
- * Update existing event
- * @property {string} req.body.eventName - The eventName of event.
- * @property {string} req.body.mobileNumber - The mobileNumber of event.
- * @returns {Event}
+ * Update existing rule
+ * @property {string} req.body.ruleName - The ruleName of rule.
+ * @property {string} req.body.mobileNumber - The mobileNumber of rule.
+ * @returns {Rule}
  */
 function update(req, res, next) {
-  const event = req.event;
-  event.eventName = req.body.eventName;
-  event.mobileNumber = req.body.mobileNumber;
+  const rule = req.rule;
+  rule.ruleName = req.body.ruleName;
+  rule.mobileNumber = req.body.mobileNumber;
 
-  event.save()
-    .then(savedEvent => res.json(savedEvent))
+  rule.save()
+    .then(savedRule => res.json(savedRule))
     .catch(e => next(e));
 }
 
 /**
- * Get event list.
- * @property {number} req.query.skip - Number of events to be skipped.
- * @property {number} req.query.limit - Limit number of events to be returned.
- * @returns {Event[]}
+ * Get rule list.
+ * @property {number} req.query.skip - Number of rules to be skipped.
+ * @property {number} req.query.limit - Limit number of rules to be returned.
+ * @returns {Rule[]}
  */
 function list(req, res, next) {
   const { limit = 50 } = req.query;
 
-  Event.findAll({ limit })
-    .then(events => res.json(events))
+  Rule.findAll({ limit })
+    .then(rules => res.json(rules))
     .catch(e => next(e));
 }
 
 /**
- * Delete event.
- * @returns {Event}
+ * Delete rule.
+ * @returns {Rule}
  */
 function remove(req, res, next) {
-  const event = req.event;
-  const eventName = req.event.eventName;
+  const rule = req.rule;
+  const ruleName = req.rule.ruleName;
 
-  event.destroy()
-    .then(() => res.json(eventName))
+  rule.destroy()
+    .then(() => res.json(ruleName))
     .catch(e => next(e));
 }
 
