@@ -6,17 +6,10 @@ const Ruleset = db.ruleset;
  * Get ruleset
  * @returns {Ruleset}
  */
-function preview(req, res) {
-
-
-  return res.json(req.ruleset);
+function preview(request, response) {
+  return response.json(request.ruleset);
 }
 
 export default {
-  load,
-  get,
-  create,
-  update,
-  list,
-  remove,
+  preview,
 };
