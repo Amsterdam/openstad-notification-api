@@ -1,8 +1,8 @@
 import express from 'express';
-import eventController from '../controllers/event.controller';
+import resourceController from '../controllers/resource.controller';
 
 const router = express.Router();
 
-router.route('/').get(eventController.list);
+router.route('/').get(resourceController.list);
 
 export default router;

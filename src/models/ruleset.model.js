@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
     body: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
