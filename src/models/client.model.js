@@ -5,5 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    clientKey: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
   });
 };

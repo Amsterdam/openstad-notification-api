@@ -7,6 +7,10 @@ export function resourceFactory(db) {
       ownerId: 1,
     },
     {
+      label: 'argument',
+      ownerId: 1,
+    },
+    {
       label: 'vote',
       ownerId: 1,
     },
