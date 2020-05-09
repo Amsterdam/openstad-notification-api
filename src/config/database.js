@@ -1,22 +1,43 @@
-import Sequelize from 'sequelize';
+import Joi from 'joi';
 
-export const sequelize =  new Sequelize(
-  'postgres://postgres:8857@localhost:5432/postgres', {
-    host:"localhost",
-    dialect:'postgres',
-    pool:{
-      max:5,
-      min:0,
-      idle:10000
-    },
-    logging: false
-  }
-);
+// require and configure dotenv, will load vars in .env in PROCESS.ENV
+require('dotenv').config();
+//
+// // define validation for all the env vars
+// const envVarsSchema = Joi.object({
+//   NODE_ENV: Joi.string()
+//     .allow(['development', 'production', 'test', 'provision'])
+//     .default('development'),
+//   PORT: Joi.number().default(4000),
+//   JWT_SECRET: Joi.string()
+//     .required()
+//     .description('JWT Secret required to sign'),
+//   PG_DB: Joi.string()
+//     .required()
+//     .description('Postgres database name'),
+//   PG_PORT: Joi.number().default(5432),
+//   PG_HOST: Joi.string().default('localhost'),
+//   PG_USER: Joi.string()
+//     .required()
+//     .description('Postgres username'),
+//   PG_PASSWORD: Joi.string()
+//     .allow('')
+//     .description('Postgres password'),
+// })
+//   .unknown()
+//   .required();
+//
+// const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
+// if (error) {
+//   throw new Error(`Config validation error: ${error.message}`);
+// }
 
-sequelize.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+export const databaseConfig = {
+  mysql: {
+    db: process.env.DB_NAME,
+    port: process.env.DB_HOST,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+  },
+};

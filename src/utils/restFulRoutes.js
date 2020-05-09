@@ -14,7 +14,6 @@ export function restFulRoutes(controllers) {
       const restDir = `/${controller.restDir()}`;
 
       if (typeof controller.find === 'function') {
-        console.log('find')
         routes.push({
           path: `${restDir}/find/:id`,
           method: "get",

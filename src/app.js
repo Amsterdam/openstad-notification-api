@@ -1,25 +1,13 @@
 import 'babel-polyfill';
-import express from 'express';
+import {appConfig} from './config/app';
+import app from './utils/express';
+// import db from './utils/sequelize';
 
-import { registerRoutes } from './utils/registerRoutes';
+if (!module.parent) {
+  // listen on port config.port
+  app.listen(appConfig.port, () => {
+    console.info(`server started on port ${appConfig.port} (${appConfig.env})`);
+  });
+}
 
-// Constants
-const PORT = 9090;
-const HOST = '0.0.0.0';
-
-// App
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-registerRoutes(app);
-
-app.listen(PORT, HOST);
-console.log('Registered routes:')
-app._router.stack.forEach(function(r){
-  if (r.route && r.route.path){
-    console.log(r.route.path)
-  }
-})
-console.log(`Running on http://${HOST}:${PORT}`);
+export default app;
