@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
 import {appConfig} from './config/app';
-import app from './utils/express';
+import app from './bootstrap/express';
 
 if (!module.parent) {
   // listen on port config.port

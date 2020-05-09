@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import db from '../utils/sequelize';
+import db from '../bootstrap/sequelize';
 
 const Event = db.event;
 
