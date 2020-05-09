@@ -41,7 +41,7 @@ if (appConfig.env === 'development') {
   }));
 }
 
-// mount all routes on /api path
+// Register routes
 app.use('/', routes);
 
 // if error is not an instanceOf APIError, convert it.
