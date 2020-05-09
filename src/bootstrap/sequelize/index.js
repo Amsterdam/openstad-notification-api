@@ -38,8 +38,6 @@ syncModels(sequelize, db);
 // // });
 //
 
-
-
 module.exports = _.extend(
   {
     sequelize,
