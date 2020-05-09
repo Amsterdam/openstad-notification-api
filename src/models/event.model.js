@@ -1,16 +1,13 @@
-/**
- * Event Schema
- */
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('events', {
-    eventname: {
+  return sequelize.define('event', {
+    label: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
     },
   });
 };
