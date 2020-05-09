@@ -1,6 +1,4 @@
 import Sequelize from 'sequelize';
-import fs from 'fs';
-import path from 'path';
 import _ from 'lodash';
 import { databaseConfig } from '../../config/database';
 import { resourceFactory } from '../../db/factories/resource.factory';
