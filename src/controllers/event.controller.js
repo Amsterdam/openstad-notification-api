@@ -7,19 +7,24 @@ const Event = db.event;
  * Load event and append to req.
  */
 async function load(req, res, next, id) {
-    try {
-        const eventFoundResponse = await Event.findById(id);
-        if (!eventFoundResponse) {
-            const e = new Error('Event does not exist');
-            e.status = httpStatus.NOT_FOUND;
-            return next(e);
-        }
+  try {
+    const eventFoundResponse = await Event.findByPk(id);
 
-        req.event = eventFoundResponse; // eslint-disable-line no-param-reassign
-        return next();
-    } catch (error) {
-        return next(error);
+    if (!eventFoundResponse) {
+      const e = new Error('Event does not exist');
+      e.status = httpStatus.NOT_FOUND;
+      return next(e);
     }
+
+    req.event = eventFoundResponse; // eslint-disable-line no-param-reassign
+
+      return next();
+  } catch (error) {
+    console.log('error');
+    console.log(error);
+
+    return next(error);
+  }
 }
 
 /**
@@ -27,7 +32,7 @@ async function load(req, res, next, id) {
  * @returns {Event}
  */
 function get(req, res) {
-    return res.json(req.event);
+  return res.json(req.event);
 }
 
 /**
@@ -37,13 +42,13 @@ function get(req, res) {
  * @returns {Event}
  */
 function create(req, res, next) {
-    const event = Event.build({
-        eventName: req.body.eventName,
-    });
+  const event = Event.build({
+    eventName: req.body.eventName,
+  });
 
-    event.save()
-        .then(savedEvent => res.json(savedEvent))
-        .catch(e => next(e));
+  event.save()
+    .then(savedEvent => res.json(savedEvent))
+    .catch(e => next(e));
 }
 
 /**
@@ -53,13 +58,13 @@ function create(req, res, next) {
  * @returns {Event}
  */
 function update(req, res, next) {
-    const event = req.event;
-    event.eventName = req.body.eventName;
-    event.mobileNumber = req.body.mobileNumber;
+  const event = req.event;
+  event.eventName = req.body.eventName;
+  event.mobileNumber = req.body.mobileNumber;
 
-    event.save()
-        .then(savedEvent => res.json(savedEvent))
-        .catch(e => next(e));
+  event.save()
+    .then(savedEvent => res.json(savedEvent))
+    .catch(e => next(e));
 }
 
 /**
@@ -69,11 +74,11 @@ function update(req, res, next) {
  * @returns {Event[]}
  */
 function list(req, res, next) {
-    const { limit = 50 } = req.query;
+  const { limit = 50 } = req.query;
 
-    Event.findAll({ limit })
-        .then(events => res.json(events))
-        .catch(e => next(e));
+  Event.findAll({ limit })
+    .then(events => res.json(events))
+    .catch(e => next(e));
 }
 
 /**
@@ -81,19 +86,19 @@ function list(req, res, next) {
  * @returns {Event}
  */
 function remove(req, res, next) {
-    const event = req.event;
-    const eventName = req.event.eventName;
+  const event = req.event;
+  const eventName = req.event.eventName;
 
-    event.destroy()
-        .then(() => res.json(eventName))
-        .catch(e => next(e));
+  event.destroy()
+    .then(() => res.json(eventName))
+    .catch(e => next(e));
 }
 
 export default {
-    load,
-    get,
-    create,
-    update,
-    list,
-    remove,
+  load,
+  get,
+  create,
+  update,
+  list,
+  remove,
 };

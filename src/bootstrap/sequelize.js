@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import { databaseConfig } from '../config/database';
+import { resourceFactory } from '../db/factories/resource.factory';
 
 const db = {};
 
@@ -48,6 +49,7 @@ fs.readdirSync(modelsDir)
 //
 
 sequelize.sync({ force: true })
+  .then(() => resourceFactory())
   .then(() => {
     console.log(`Database & tables created!`);
   });

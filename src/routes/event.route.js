@@ -1,20 +1,19 @@
 import express from 'express';
 import validate from 'express-validation';
 import eventSchema from '../schemas/event.schema';
-import eventCtrl from '../controllers/event.controller';
+import eventController from '../controllers/event.controller';
 
 const router = express.Router();
 
 router.route('/')
-  .get(eventCtrl.list)
-  // .post(validate(eventSchema.createEvent), eventCtrl.create);
+  .get(eventController.list)
+  // .post(validate(eventSchema.createEvent), eventController.create);
 
 router.route('/:eventId')
-  .get(eventCtrl.get)
-  // .put(validate(eventSchema.updateEvent), eventCtrl.update)
-  // .delete(eventCtrl.remove);
+  .get(eventController.get)
+  // .put(validate(eventSchema.updateEvent), eventController.update)
+  // .delete(eventController.remove);
 
-/** Load event when API with eventId route parameter is hit */
-router.param('eventId', eventCtrl.load);
+router.param('eventId', eventController.load);
 
 export default router;
