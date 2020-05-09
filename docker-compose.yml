@@ -5,37 +5,36 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "openstad_notification"
+      MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    expose:
-      - "3306"
-      - "33060"
     restart: unless-stopped
     ports:
-      - "3310:3306"
+      - "3306:3306"
     volumes:
       - database:/var/lib/mysql
     networks:
       - openstad
 
-  app:
-    environment:
-      ENVIRONMENT: "development"
-      DB_HOST: "3306"
-      DB_USER: "root"
-      DB_PASSWORD: "root"
-      DB_NAME: "openstad_notification"
-    volumes:
-      - ./image/images:/app/images
-    build: .
-    ports:
-      - 9090:9090
-    restart: unless-stopped
-    networks:
-      - openstad
-    depends_on:
-      - "mysql"
+#  app:
+#    environment:
+#      ENVIRONMENT: "development"
+#      DB_HOST: "3306"
+#      DB_USER: "root"
+#      DB_PASSWORD: "root"
+#      DB_NAME: "openstad_notification"
+#    volumes:
+#      - ./image/images:/app/images
+#    build: .
+#    ports:
+#      - 9090:9090
+#    restart: unless-stopped
+#    networks:
+#      - openstad
+#    depends_on:
+#      - "mysql"
 volumes:
   database:
 networks:
   openstad:
+    external: true

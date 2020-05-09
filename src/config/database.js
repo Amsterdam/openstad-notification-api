@@ -1,6 +1,5 @@
 import Joi from 'joi';
 
-// require and configure dotenv, will load vars in .env in PROCESS.ENV
 require('dotenv').config();
 //
 // // define validation for all the env vars
@@ -35,9 +34,9 @@ require('dotenv').config();
 export const databaseConfig = {
   mysql: {
     db: process.env.DB_NAME,
-    port: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    password: null
   },
 };

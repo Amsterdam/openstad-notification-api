@@ -1,18 +1,16 @@
-import { sequelize } from '../utils/sequelize'
-
 /**
  * Event Schema
  */
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('event', {
-    eventName: {
+  return sequelize.define('events', {
+    eventname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   });
 };

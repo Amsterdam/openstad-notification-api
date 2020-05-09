@@ -17,11 +17,20 @@ const sequelize = new Sequelize(
   },
 );
 
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+
 const modelsDir = path.normalize(`${__dirname}/../models`);
 
 // loop through all files in models directory ignoring hidden files and this file
-fs
-  .readdirSync(modelsDir)
+fs.readdirSync(modelsDir)
   .filter(file => file.indexOf('.') !== 0 && file.indexOf('.map') === -1)
   // import model files and save model names
   .forEach((file) => {
@@ -29,21 +38,20 @@ fs
     const model = sequelize.import(path.join(modelsDir, file));
     db[model.name] = model;
   });
+//
+// // calling all the associate function, in order to make the association between the models
+// // Object.keys(db).forEach((modelName) => {
+// //   if (db[modelName].associate) {
+// //     db[modelName].associate(db);
+// //   }
+// // });
+//
 
-// calling all the associate function, in order to make the association between the models
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+sequelize.sync({ force: true })
+  .then(() => {
+    console.log(`Database & tables created!`);
+  });
 
-// Synchronizing any model changes with database.
-sequelize.sync().then((err) => {
-  if (err) console.error('An error occured %j', err);
-  else console.info('Database synchronized');
-});
-
-// assign the sequelize variables to the db object and returning the db.
 module.exports = _.extend(
   {
     sequelize,

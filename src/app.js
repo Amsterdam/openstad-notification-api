@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+
 import {appConfig} from './config/app';
 import app from './utils/express';
 // import db from './utils/sequelize';
@@ -6,7 +7,7 @@ import app from './utils/express';
 if (!module.parent) {
   // listen on port config.port
   app.listen(appConfig.port, () => {
-    console.info(`server started on port ${appConfig.port} (${appConfig.env})`);
+    console.info(`server started on port ${appConfig.port}`);
   });
 }
 
