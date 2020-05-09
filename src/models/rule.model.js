@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('event', {
+  return sequelize.define('rule', {
     label: {
       type: DataTypes.STRING,
       allowNull: false,

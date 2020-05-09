@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('event', {
+  return sequelize.define('client', {
     label: {
       type: DataTypes.STRING,
       allowNull: false,
