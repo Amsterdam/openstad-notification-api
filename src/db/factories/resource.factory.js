@@ -1,13 +1,14 @@
-import db from '../../bootstrap/sequelize';
+export function resourceFactory(db) {
+  const Resource = db.resource;
 
-const Resource = db.resource;
-console.log('resource')
-console.log('resource2')
-console.log(Resource)
-
-// export function resourceFactory() {
-//   return Resource.create({
-//     label: 'idea',
-//     userId: 1,
-//   });
-// }
+  return Resource.bulkCreate([
+    {
+      label: 'idea',
+      ownerId: 1,
+    },
+    {
+      label: 'vote',
+      ownerId: 1,
+    },
+  ]);
+}

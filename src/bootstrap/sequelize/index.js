@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize';
 import _ from 'lodash';
 import { databaseConfig } from '../../config/database';
-import { resourceFactory } from '../../db/factories/resource.factory';
 import { importModels } from './importModels';
 
 const db = {};
@@ -37,10 +36,7 @@ importModels(sequelize, db);
 // // });
 //
 
-sequelize.sync({ force: true })
-  .then(() => {
-    console.log(`Database & tables created!`);
-  });
+
 
 module.exports = _.extend(
   {
