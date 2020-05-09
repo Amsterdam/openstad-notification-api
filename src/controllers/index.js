@@ -1,1 +1,0 @@
-export { EventController } from './EventController';
