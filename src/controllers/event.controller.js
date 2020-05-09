@@ -11,9 +11,23 @@ const Client = db.client;
  * @returns {any}
  */
 function publish(request, response) {
+  const event = Event.findOne({
+    where: { eventLabel : request.eventLabel }
+  });
 
+  let notifications = [];
 
-  return response.json(request.rule);
+  event.rulesets.forEach((ruleset) => {
+    if(rulesetService.match(ruleset, data)){
+      const template = rulesetService.resolveTemplate(ruleset);
+
+      notifications.push(notificationService.prepare(template));
+    }
+  });
+
+  // notificationService.queue(notifications);
+
+  return response.json(notifications);
 }
 
 export default {
