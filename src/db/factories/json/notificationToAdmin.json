@@ -1,23 +1,48 @@
 {
   "and": [
     {
-      "eventType": "CREATE"
+      "==": [
+        {
+          "var": "eventType"
+        },
+        "CREATE"
+      ]
     },
     {
-      "resource": "idea"
+      "==": [
+        {
+          "var": "resource"
+        },
+        "idea"
+      ]
     },
     {
       "or": [
         {
-          "userRole": "admin"
+          "==": [
+            {
+              "var": "userRole"
+            },
+            "admin"
+          ]
         },
         {
-          "userRole": "moderator"
+          "==": [
+            {
+              "var": "userRole"
+            },
+            "moderator"
+          ]
         }
       ]
     },
     {
-      "userEmail": "tosh.koevoets@gmail.com"
+      "==": [
+        {
+          "var": "userEmail"
+        },
+        "tosh.koevoets@gmail.com"
+      ]
     }
   ]
 }
