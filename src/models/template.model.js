@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Template.associate = function(models) {
-    Template.belongsToMany(models.ruleset, { through: 'ruleset_template' })
+    Template.hasMany(models.ruleset)
   };
 
   return Template;

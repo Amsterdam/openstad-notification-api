@@ -3,17 +3,17 @@ module.exports = (sequelize, DataTypes) => {
     label: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: false,
     },
     body: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: false,
     },
   }, {});
 
   RuleSet.associate = function(models) {
-    RuleSet.hasOne(models.template)
+    RuleSet.belongsTo(models.template)
   };
 
   return RuleSet;
