@@ -1,8 +1,6 @@
-import httpStatus from 'http-status';
 import db from '../bootstrap/sequelize';
 
 const Event = db.event;
-const Client = db.client;
 
 /**
  *
@@ -15,6 +13,10 @@ function publish(request, response) {
     where: { eventLabel : request.eventLabel }
   });
 
+  const data = {
+    clientKey: request.clientKey
+  };
+
   let notifications = [];
 
   event.rulesets.forEach((ruleset) => {
@@ -25,7 +27,7 @@ function publish(request, response) {
     }
   });
 
-  // notificationService.queue(notifications);
+  notificationService.send(notifications);
 
   return response.json(notifications);
 }
