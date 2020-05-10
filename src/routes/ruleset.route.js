@@ -6,9 +6,12 @@ const router = express.Router();
 router.route('/')
   .get(rulesetController.list)
 
-router.route('/preview')
-  .post(rulesetController.preview)
+router.route('/:rulesetId')
+  .get(rulesetController.get)
 
-// router.param('rulesetId', rulesetController.load);
+router.route('/preview/:rulesetId')
+  .get(rulesetController.preview)
+
+router.param('rulesetId', rulesetController.load);
 
 export default router;

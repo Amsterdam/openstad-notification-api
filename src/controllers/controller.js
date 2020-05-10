@@ -32,11 +32,10 @@ async function load(request, response, next, id, Entity) {
  *
  * @param request
  * @param response
- * @param entity
  * @returns {any}
  */
-function get(request, response, entity) {
-  return response.json(request[entity]);
+function get(request, response) {
+  return response.json(request.entity);
 }
 
 /**

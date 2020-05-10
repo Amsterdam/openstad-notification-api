@@ -3,6 +3,8 @@ import controller from './controller';
 
 const Ruleset = db.ruleset;
 
+const load = async (request, response, next, id) => controller.load(request, response, next, id, Ruleset);
+const get = (request, response) => controller.get(request, response);
 const list = (request, response, next) => controller.list(request, response, next, Ruleset);
 
 /**
@@ -10,10 +12,12 @@ const list = (request, response, next) => controller.list(request, response, nex
  * @returns {Ruleset}
  */
 function preview(request, response) {
-  return response.json(request.ruleset);
+  return response.json(JSON.parse(request.entity.body));
 }
 
 export default {
-  preview,
+  load,
+  get,
   list,
+  preview,
 };
