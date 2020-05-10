@@ -21,15 +21,15 @@ function publish(request, response) {
 
   event.rulesets.forEach((ruleset) => {
     if(rulesetService.match(ruleset, data)){
-      const template = rulesetService.resolveTemplate(ruleset);
+      const template = templateService.resolve(ruleset.template, data);
 
       notifications.push(notificationService.prepare(template));
     }
   });
 
-  notificationService.send(notifications);
+  const responseBody = notificationService.send(notifications);
 
-  return response.json(notifications);
+  return response.json(responseBody);
 }
 
 export default {
