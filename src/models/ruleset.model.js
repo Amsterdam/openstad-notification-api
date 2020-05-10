@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('ruleset', {
+  const RuleSet = sequelize.define('ruleset', {
     label: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,5 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-  });
+  }, {});
+
+  RuleSet.associate = function(models) {
+    RuleSet.hasOne(models.template)
+  };
+
+  return RuleSet;
 };

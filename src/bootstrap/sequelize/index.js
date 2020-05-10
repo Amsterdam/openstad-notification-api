@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { databaseConfig } from '../../config/database';
 import { importModels } from './importModels';
 import { syncModels } from './syncModels';
+import { associateModels } from './associateModels';
 
 const db = {};
 
@@ -28,15 +29,7 @@ sequelize
 
 importModels(sequelize, db);
 syncModels(sequelize, db);
-
-//
-// // calling all the associate function, in order to make the association between the models
-// // Object.keys(db).forEach((modelName) => {
-// //   if (db[modelName].associate) {
-// //     db[modelName].associate(db);
-// //   }
-// // });
-//
+associateModels(db);
 
 module.exports = _.extend(
   {
