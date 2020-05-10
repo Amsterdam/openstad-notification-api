@@ -1,0 +1,23 @@
+{
+  "and": [
+    {
+      "eventType": "CREATE"
+    },
+    {
+      "resource": "idea"
+    },
+    {
+      "or": [
+        {
+          "userRole": "admin"
+        },
+        {
+          "userRole": "moderator"
+        }
+      ]
+    },
+    {
+      "userEmail": "tosh.koevoets@gmail.com"
+    }
+  ]
+}

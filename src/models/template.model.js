@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    ownerId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
-    },
+    body: {
+      type: DataTypes.BLOB,
+      allowNull: true,
+      unique: false,
+    }
   }, {});
 
   Template.associate = function(models) {
