@@ -1,6 +1,9 @@
 import db from '../bootstrap/sequelize';
+import controller from './controller';
 
 const Ruleset = db.ruleset;
+
+const list = (request, response, next) => controller.list(request, response, next, Ruleset);
 
 /**
  * Get ruleset
@@ -12,4 +15,5 @@ function preview(request, response) {
 
 export default {
   preview,
+  list,
 };

@@ -5,11 +5,10 @@ const router = express.Router();
 
 router.route('/')
   .get(rulesetController.list)
-  .post(rulesetController.create);
 
 router.route('/preview')
-  .post(rulesetController.get)
+  .post(rulesetController.preview)
 
-router.param('rulesetId', rulesetController.load);
+// router.param('rulesetId', rulesetController.load);
 
 export default router;

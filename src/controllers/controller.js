@@ -1,6 +1,10 @@
 import httpStatus from 'http-status';
 
 /**
+ * Abstract Controller methods.
+ */
+
+/**
  * Load entity and append to request.
  */
 async function load(request, response, next, id, Entity) {
@@ -72,13 +76,15 @@ function update(request, response, next) {
  * @param request
  * @param response
  * @param next
+ * @param Entity
+ * @returns {Promise<T | void>}
  */
-function list(request, response, next) {
+function list(request, response, next, Entity) {
   const { limit = 50 } = request.query;
 
-  Entity.findAll({ limit })
-    .then(entitys => response.json(entities))
-    .catch(e => next(e));
+  return Entity.findAll({ limit })
+    .then(entities => response.json(entities))
+    .catch(e => console.log(e));
 }
 
 /**

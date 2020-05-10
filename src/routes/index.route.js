@@ -1,6 +1,7 @@
 import express from 'express';
 import eventRoutes from './event.route';
 import resourceRoutes from './resource.route';
+import rulesetRoutes from './ruleset.route';
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.get('/', (req, res) => res.send('OK'));
  */
 router.use('/event', eventRoutes);
 router.use('/resource', resourceRoutes);
+router.use('/ruleset', rulesetRoutes);
 
 export default router;
