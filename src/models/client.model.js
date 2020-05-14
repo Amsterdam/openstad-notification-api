@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('client', {
+  const Client = sequelize.define('client', {
     label: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,5 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       unique: true,
     },
-  });
+  }, {});
+
+  Client.associate = function(models) {
+    Client.hasMany(models.ruleset, {foreignKey: 'client_key', sourceKey: 'key'})
+  }
+
+  return Client;
 };

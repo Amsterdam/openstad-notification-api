@@ -4,6 +4,6 @@ import { templateFactory } from './template.factory';
 
 export function runFactories(db) {
   resourceFactory(db);
-  clientFactory(db);
   templateFactory(db);
+  clientFactory(db);
 }
