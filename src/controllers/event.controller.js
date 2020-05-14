@@ -1,6 +1,10 @@
 import db from '../bootstrap/sequelize';
+import rulesetService from '../services/ruleset.service';
+import templateService from '../services/template.service';
+import notificationService from '../services/notification.service';
 
 const Event = db.event;
+const Client = db.event;
 
 /**
  *
@@ -9,17 +13,13 @@ const Event = db.event;
  * @returns {any}
  */
 function publish(request, response) {
-  const event = Event.findOne({
-    where: { eventLabel : request.eventLabel }
+  const client = Client.findOne({
+    where: { clientKey : request.clientKey }
   });
-
-  const data = {
-    clientKey: request.clientKey
-  };
 
   let notifications = [];
 
-  event.rulesets.forEach((ruleset) => {
+  client.rulesets.forEach((ruleset) => {
     if(rulesetService.match(ruleset, data)){
       const template = templateService.resolve(ruleset.template, data);
 
