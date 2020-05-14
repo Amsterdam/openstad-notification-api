@@ -4,11 +4,11 @@ export function clientFactory(db) {
   return Client.bulkCreate([
     {
       label: 'Gemeente Amstelveen',
-      clientKey: 'gem_amstelveen_#@EWDs',
+      key: 'gem_amstelveen_#@EWDs',
     },
     {
       label: 'Amsterdam Noord',
-      clientKey: 'gem_amsterdam_#@32ewds',
+      key: 'gem_amsterdam_#@32ewds',
     },
   ]);
 }

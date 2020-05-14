@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   RuleSet.associate = function(models) {
-    RuleSet.belongsTo(models.template)
+    RuleSet.belongsTo(models.template);
+    RuleSet.belongsTo(models.client, {foreignKey: 'client_key',targetKey: 'key'});
   };
 
   return RuleSet;
