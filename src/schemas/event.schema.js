@@ -1,12 +1,13 @@
-import Joi from 'joi';
+// import Joi from 'joi';
+import { Joi } from 'express-validation';
 
 export default {
   // POST /api/events
   publish: {
-    body: {
+    body: Joi.object({
       eventLabel: Joi.string().required(),
       clientKey: Joi.string().required(),
-    },
+    }),
   },
 
   // UPDATE /api/events/:eventId
