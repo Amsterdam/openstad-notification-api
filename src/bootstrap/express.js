@@ -9,7 +9,7 @@ import helmet from 'helmet';
 import routes from '../routes/index.route';
 import { appConfig } from '../config/app';
 import APIError from './errorHandling/APIError';
-import NotFoundHandler from './errorHandling/NotFoundHandler'
+import FourOFourHandler from './errorHandling/FourOFourHandler'
 
 const app = express();
 
@@ -61,8 +61,7 @@ app.use((err, req, res, next) => {
   return next(err);
 });
 
-// catch 404 and forward to error handler
-app.use(NotFoundHandler);
+app.use(FourOFourHandler);
 
 app.use((
   err,
