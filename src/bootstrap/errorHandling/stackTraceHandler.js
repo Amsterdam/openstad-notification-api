@@ -8,5 +8,5 @@ import { appConfig } from '../../config/app';
 export default (err, req, res, next) =>
   res.status(err.status).json({
     message: err.isPublic ? err.message : httpStatus[err.status],
-    stack: appConfig.env === 'development' ? err.stack : {},
+    stack: appConfig.environment === 'development' ? err.stack : {},
   })
