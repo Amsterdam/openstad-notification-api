@@ -20,8 +20,6 @@ function publish(request, response) {
   }).then((rulesets) => {
       let notifications = [];
 
-      console.log(data)
-
       rulesets.forEach((ruleset) => {
         if(rulesetService.match(ruleset, data)){
           const template = templateService.resolve(ruleset.template, data);
@@ -29,10 +27,9 @@ function publish(request, response) {
           notifications.push(notificationService.prepare(template));
         }
       });
-    // const responseBody = notificationService.send(notifications);
+    const result = notificationService.send(notifications);
 
-
-    return response.json(notifications);
+    return response.json(result);
     }
   );
 }

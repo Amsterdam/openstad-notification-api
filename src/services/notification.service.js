@@ -1,9 +1,9 @@
-function send() {
+function prepare() {
   return 'notification';
 }
 
-function prepare() {
-
+function send(notifications) {
+  return notifications;
 }
 
 export default {
