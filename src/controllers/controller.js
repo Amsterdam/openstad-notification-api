@@ -43,11 +43,10 @@ function get(request, response) {
  * @param request
  * @param response
  * @param next
+ * @param Entity
  */
 function create(request, response, next, Entity) {
-  const entity = Entity.build({
-    entityName: request.body.entityName,
-  });
+  const entity = Entity.build({...request.body});
 
   entity.save()
     .then(savedEntity => response.json(savedEntity))
@@ -61,9 +60,12 @@ function create(request, response, next, Entity) {
  * @param next
  */
 function update(request, response, next) {
-  const entity = request.entity;
-  entity.entityName = request.body.entityName;
-  entity.mobileNumber = request.body.mobileNumber;
+  let { entity, body } = request.entity;
+
+  Object.keys(body).forEach((key) => {
+    // TODO prevent mass assignment
+    entity[key] = body[key];
+  });
 
   entity.save()
     .then(savedEntity => response.json(savedEntity))
@@ -87,8 +89,10 @@ function list(request, response, next, Entity) {
 }
 
 /**
- * Delete entity.
- * @returns {Entity}
+ *
+ * @param request
+ * @param response
+ * @param next
  */
 function remove(request, response, next) {
   const entity = request.entity;

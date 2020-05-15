@@ -4,8 +4,11 @@ import controller from './controller';
 const Ruleset = db.ruleset;
 
 const load = async (request, response, next, id) => controller.load(request, response, next, id, Ruleset);
-const get = (request, response) => controller.get(request, response);
 const list = (request, response, next) => controller.list(request, response, next, Ruleset);
+const get = (request, response) => controller.get(request, response);
+const create = (request, response, next) => controller.create(request, response, next, Ruleset);
+const update = (request, response, next) => controller.update(request, response, next, Ruleset);
+const remove = (request, response, next) => controller.remove(request, response, next, Ruleset);
 
 /**
  * Get ruleset
@@ -20,4 +23,7 @@ export default {
   get,
   list,
   preview,
+  create,
+  update,
+  remove,
 };

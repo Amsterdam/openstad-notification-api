@@ -2,7 +2,7 @@ function preview(request, response) {
   return response.json(request.ruleset);
 }
 
-function resolve() {
+function resolve(template, data) {
 
 }
 
