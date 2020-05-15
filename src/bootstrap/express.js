@@ -9,7 +9,9 @@ import helmet from 'helmet';
 import routes from '../routes/index.route';
 import { appConfig } from '../config/app';
 import APIError from './errorHandling/APIError';
-import FourOFourHandler from './errorHandling/FourOFourHandler'
+import fourOFourHandler from './errorHandling/fourOFourHandler'
+import APIErrorHandler from './errorHandling/APIErrorHandler';
+import stackTraceHandler from './errorHandling/stackTraceHandler';
 
 const app = express();
 
@@ -42,36 +44,22 @@ if (appConfig.env === 'development') {
   }));
 }
 
-// Register routes
+/**
+ *
+ * Register routes.
+ */
 app.use('/', routes);
 
-// if error is not an instanceOf APIError, convert it.
-app.use((err, req, res, next) => {
-  if (err instanceof expressValidation.ValidationError) {
-    // validation error contains errors which is an array of error each containing message[]
-    const unifiedErrorMessage = err.errors
-      .map(error => error.messages.join('. '))
-      .join(' and ');
-    const error = new APIError(unifiedErrorMessage, err.status, true);
-    return next(error);
-  } else if (!(err instanceof APIError)) {
-    const apiError = new APIError(err.message, err.status, err.isPublic);
-    return next(apiError);
-  }
-  return next(err);
-});
+/**
+ *
+ * Error handling.
+ */
+app.use(APIErrorHandler);
+app.use(fourOFourHandler);
+app.use(stackTraceHandler);
 
-app.use(FourOFourHandler);
-
-app.use((
-  err,
-  req,
-  res,
-  next, // eslint-disable-line no-unused-vars
-) =>
-  res.status(err.status).json({
-    message: err.isPublic ? err.message : httpStatus[err.status],
-    stack: appConfig.env === 'development' ? err.stack : {},
-  }));
-
+/**
+ *
+ * Export express app.
+ */
 export default app;
