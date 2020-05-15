@@ -4,11 +4,12 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import httpStatus from 'http-status';
 // import expressWinston from 'express-winston';
-// import expressValidation from 'express-validation';
+import expressValidation from 'express-validation';
 import helmet from 'helmet';
 import routes from '../routes/index.route';
 import { appConfig } from '../config/app';
-import APIError from './APIError';
+import APIError from './errorHandling/APIError';
+import NotFoundHandler from './errorHandling/NotFoundHandler'
 
 const app = express();
 
@@ -61,13 +62,8 @@ app.use((err, req, res, next) => {
 });
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new APIError('API not found', httpStatus.NOT_FOUND);
-  return next(err);
-});
+app.use(NotFoundHandler);
 
-
-// error handler, send stacktrace only during development
 app.use((
   err,
   req,
