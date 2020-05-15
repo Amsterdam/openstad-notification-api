@@ -21,13 +21,15 @@ class ExtendableError extends Error {
  */
 class APIError extends ExtendableError {
     /**
-     * Creates an API error.
-     * @param {string} message - Error message.
-     * @param {number} status - HTTP status code of error.
-     * @param {boolean} isPublic - Whether the message should be visible to user or not.
+     *
+     * @param message
+     * @param status
+     * @param body
+     * @param isPublic
      */
-    constructor(message, status = httpStatus.INTERNAL_SERVER_ERROR, isPublic = false) {
+    constructor(message, status = httpStatus.INTERNAL_SERVER_ERROR, isPublic = false, body= 'test') {
         super(message, status, isPublic);
+        this.body = body;
     }
 }
 

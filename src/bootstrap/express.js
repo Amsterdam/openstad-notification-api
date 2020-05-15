@@ -8,7 +8,6 @@ import expressValidation from 'express-validation';
 import helmet from 'helmet';
 import routes from '../routes/index.route';
 import { appConfig } from '../config/app';
-import APIError from './errorHandling/APIError';
 import fourOFourHandler from './errorHandling/fourOFourHandler'
 import APIErrorHandler from './errorHandling/APIErrorHandler';
 import stackTraceHandler from './errorHandling/stackTraceHandler';

@@ -3,7 +3,7 @@ import APIError from './APIError';
 
 export default (err, req, res, next) => {
   if (err instanceof expressValidation.ValidationError) {
-    const error = new APIError(err.message, err.statusCode, true);
+    const error = new APIError(err.message, err.statusCode, true, err.details);
 
     return next(error);
   } else if (!(err instanceof APIError)) {
