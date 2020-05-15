@@ -1,5 +1,5 @@
 function send() {
-
+  return 'notification';
 }
 
 function prepare() {

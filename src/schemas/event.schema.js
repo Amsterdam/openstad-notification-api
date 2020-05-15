@@ -5,8 +5,11 @@ export default {
   // POST /api/events
   publish: {
     body: Joi.object({
-      eventLabel: Joi.string().required(),
+      eventType: Joi.string().required(),
       clientKey: Joi.string().required(),
+      resource: Joi.string().required(),
+      userRole: Joi.string().required(),
+      userEmail: Joi.string().required(),
     }),
   },
 

@@ -4,7 +4,7 @@ import templateService from '../services/template.service';
 import notificationService from '../services/notification.service';
 
 const Event = db.event;
-const Client = db.event;
+const Ruleset = db.ruleset;
 
 /**
  *
@@ -13,23 +13,28 @@ const Client = db.event;
  * @returns {any}
  */
 function publish(request, response) {
-  const client = Client.findOne({
-    where: { clientKey : request.clientKey }
-  });
+  const data = request.body;
 
-  let notifications = [];
+  Ruleset.findAll({
+    where: { client_key : data.clientKey }
+  }).then((rulesets) => {
+      let notifications = [];
 
-  client.rulesets.forEach((ruleset) => {
-    if(rulesetService.match(ruleset, data)){
-      const template = templateService.resolve(ruleset.template, data);
+      console.log(data)
 
-      notifications.push(notificationService.prepare(template));
+      rulesets.forEach((ruleset) => {
+        if(rulesetService.match(ruleset, data)){
+          const template = templateService.resolve(ruleset.template, data);
+
+          notifications.push(notificationService.prepare(template));
+        }
+      });
+    // const responseBody = notificationService.send(notifications);
+
+
+    return response.json(notifications);
     }
-  });
-
-  const responseBody = notificationService.send(notifications);
-
-  return response.json(responseBody);
+  );
 }
 
 export default {
