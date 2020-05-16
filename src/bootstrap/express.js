@@ -7,14 +7,14 @@ import httpStatus from 'http-status';
 import expressValidation from 'express-validation';
 import helmet from 'helmet';
 import routes from '../routes/index.route';
-import { appConfig } from '../config/app';
+import { config } from '../config/app';
 import fourOFourHandler from './errorHandling/fourOFourHandler'
 import APIErrorHandler from './errorHandling/APIErrorHandler';
 import stackTraceHandler from './errorHandling/stackTraceHandler';
 
 const app = express();
 
-if (appConfig.env === 'development') {
+if (config.env === 'development') {
   app.use(logger('dev'));
 }
 
@@ -32,7 +32,7 @@ app.use(helmet());
 app.use(cors());
 
 // enable detailed API logging in dev env
-if (appConfig.env === 'development') {
+if (config.env === 'development') {
   expressWinston.requestWhitelist.push('body');
   expressWinston.responseWhitelist.push('body');
   app.use(expressWinston.logger({

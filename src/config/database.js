@@ -31,7 +31,7 @@ require('dotenv').config();
 //   throw new Error(`Config validation error: ${error.message}`);
 // }
 
-export const databaseConfig = {
+export default {
   mysql: {
     db: process.env.DB_NAME,
     port: process.env.DB_PORT,

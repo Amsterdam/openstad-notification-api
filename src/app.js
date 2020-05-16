@@ -1,10 +1,10 @@
 import 'babel-polyfill';
 
-import {appConfig} from './config/app';
+import {config} from './config/app';
 import app from './bootstrap/express';
 
-app.listen(appConfig.port, () => {
-  console.info(`server started on port ${appConfig.port}`);
+app.listen(config.port, () => {
+  console.info(`server started on port ${config.port}`);
 });
 
 export default app;
