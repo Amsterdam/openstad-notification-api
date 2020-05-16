@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route('/')
   .get(rulesetController.list)
-  .post(rulesetController.create())
+  .post(rulesetController.create)
 
 router.route('/:rulesetId')
   .get(rulesetController.get)
