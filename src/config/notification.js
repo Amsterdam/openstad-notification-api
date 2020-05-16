@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export default {
   smpt: {
     host: "smtp.ethereal.email",

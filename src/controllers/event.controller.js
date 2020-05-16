@@ -36,7 +36,7 @@ function publish(request, response) {
         }
       });
 
-      const result = notificationService.send(notifications);
+      const result = notificationService.send(notifications, request.body);
 
       return response.json(result);
     },

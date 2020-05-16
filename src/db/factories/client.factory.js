@@ -9,6 +9,7 @@ export function clientFactory(db) {
     {
       label: 'test_template',
       body: 'TEST template',
+      subject: 'TEST template',
     }).then((template) => Client.bulkCreate([
       {
         label: 'Gemeente Amstelveen',

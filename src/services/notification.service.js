@@ -4,6 +4,7 @@ import { config } from '../config/app';
 const Notification = db.notification;
 
 function prepare(notificationInstance, user) {
+  console.log(config)
   return {
     from: config.fromAddress,
     to: String(user.email),
@@ -13,9 +14,9 @@ function prepare(notificationInstance, user) {
   };
 }
 
-function send(notifications) {
+function send(notifications, body) {
   notifications.forEach((notification) => {
-    const notificationEntity = Notification.build({...request.body});
+    const notificationEntity = Notification.build({...notification});
 
     notificationEntity.save()
       .then(savedNotificationEntity => {
@@ -27,13 +28,13 @@ function send(notifications) {
         return mail(savedNotificationEntity)
       })
       .then(async savedNotificationEntity => {
-        notificationEntity.status = 'SENT';
+        savedNotificationEntity.status = 'SENT';
 
-        await notificationEntity.save();
+        await savedNotificationEntity.save();
 
-        response.json(savedNotificationEntity)
+        return savedNotificationEntity;
       })
-      .catch(e => next(e));
+      .catch(e => console.log(e));
   })
 }
 

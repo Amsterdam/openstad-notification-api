@@ -2,13 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const Notification = sequelize.define('notification', {
     subject: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
+      unique: false,
     },
     status: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
+      defaultValue: 'new',
     },
     to: {
       type: DataTypes.STRING,
