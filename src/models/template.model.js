@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    subject: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false,
+    },
     body: {
       type: DataTypes.BLOB,
       allowNull: true,

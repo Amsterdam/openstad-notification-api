@@ -5,11 +5,11 @@ const Notification = db.notification;
 
 function prepare(notificationInstance, user) {
   return {
-    from: config.fromAddress, // sender address
-    to: String(user.email), // list of receivers
-    subject: notificationInstance.subject, // Subject line
-    text: notificationInstance.textBody, // plain text body
-    html: notificationInstance.body, // html body
+    from: config.fromAddress,
+    to: String(user.email),
+    subject: notificationInstance.subject,
+    text: notificationInstance.text,
+    html: notificationInstance.html,
   };
 }
 

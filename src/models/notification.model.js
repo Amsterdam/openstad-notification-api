@@ -1,9 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const Template = sequelize.define('template', {
-    label: {
+  const Notification = sequelize.define('notification', {
+    subject: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+    },
+    to: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+    },
+    from: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
     },
     body: {
       type: DataTypes.BLOB,
@@ -12,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
 
-  Template.associate = function(models) {
-    Template.hasMany(models.ruleset)
+  Notification.associate = function(models) {
+    Notification.hasMany(models.ruleset)
   };
 
-  return Template;
+  return Notification;
 };
