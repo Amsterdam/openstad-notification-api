@@ -28,6 +28,6 @@ export function clientFactory(db) {
       },
     ], {
       include: [ Ruleset]
-    })
+    }).then(() => console.info('\x1b[33m%s\x1b[0m' ,'Finished running db factories'))
   );
 }

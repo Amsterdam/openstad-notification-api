@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { resourceFactory } from '../../db/factories/resource.factory';
 
 export function importModels(sequelize, db) {
   const modelsDir = path.normalize(`${__dirname}/../../models`);

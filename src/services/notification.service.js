@@ -20,7 +20,7 @@ function send(notifications, body) {
 
     notificationEntity.save()
       .then(savedNotificationEntity => {
-        if(queuing) {
+        if(config.queuing) {
           // add queuing
           return;
         }

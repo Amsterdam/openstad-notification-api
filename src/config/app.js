@@ -7,5 +7,6 @@ export const config = {
   ...notification,
   ...database,
   port: process.env.PORT,
-  environment: process.env.ENVIRONMENT
+  environment: process.env.ENVIRONMENT,
+  queuing: false,
 };
