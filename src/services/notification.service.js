@@ -27,9 +27,7 @@ function send(notifications, body) {
     mail(savedNotificationEntity);
     savedNotificationEntity.status = 'SENT';
 
-    await savedNotificationEntity.save();
-
-    return savedNotificationEntity;
+    return await savedNotificationEntity.save();
   });
 }
 
