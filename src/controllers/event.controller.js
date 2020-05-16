@@ -14,33 +14,30 @@ const Template = db.template;
  * @param response
  * @returns {any}
  */
-function publish(request, response) {
+async function publish(request, response) {
   const data = request.body;
 
-  Ruleset.findAll({
+  const rulesets = await Ruleset.findAll({
     where: {
       client_key: data.clientKey,
     },
     include: Template,
-  }).then((rulesets) => {
-      let notifications = [];
+  });
 
-      rulesets.forEach((ruleset) => {
-        if (rulesetService.match(ruleset, data)) {
-          const notificationInstance = templateService.resolve(ruleset.template, data);
-          const user = {
-            email: config.testAddress,
-          };
+  const notifications = rulesets.map((ruleset) => {
+    if (rulesetService.match(ruleset, data)) {
+      const notificationInstance = templateService.resolve(ruleset.template, data);
+      const user = {
+        email: config.testAddress,
+      };
 
-          notifications.push(notificationService.prepare(notificationInstance, user));
-        }
-      });
+      return notificationService.prepare(notificationInstance, user);
+    }
+  });
 
-      const result = notificationService.send(notifications, request.body);
+  const result = notificationService.send(notifications, request.body);
 
-      return response.json(result);
-    },
-  );
+  return response.json(result);
 }
 
 export default {
