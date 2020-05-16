@@ -3,7 +3,7 @@ function preview(request, response) {
 }
 
 function resolve(template, data) {
-
+  return template;
 }
 
 export default {

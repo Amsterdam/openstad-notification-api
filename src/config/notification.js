@@ -7,5 +7,7 @@ export default {
       user: 'testAccount.user', // generated ethereal user
       pass: 'testAccount.pass', // generated ethereal password
     },
-  }
+  },
+  fromAddress: process.env.MAIL_FROM_ADDRESS,
+  testAddress: process.env.MAIL_TEST_EMAIL_ADDRESS,
 }
