@@ -4,7 +4,6 @@ import { config } from '../config/app';
 const Notification = db.notification;
 
 function prepare(notificationInstance, user) {
-  console.log(config)
   return {
     from: config.fromAddress,
     to: String(user.email),
@@ -38,8 +37,10 @@ function send(notifications, body) {
   })
 }
 
-function mail() {
+function mail(notification) {
   console.log('SENT MAIL')
+
+  return notification;
 }
 
 export default {
