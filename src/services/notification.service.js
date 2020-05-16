@@ -14,31 +14,27 @@ function prepare(notificationInstance, user) {
 }
 
 function send(notifications, body) {
-  notifications.forEach((notification) => {
-    const notificationEntity = Notification.build({...notification});
+  notifications.forEach(async (notification) => {
+    const notificationEntity = Notification.build({ ...notification });
 
-    notificationEntity.save()
-      .then(savedNotificationEntity => {
-        if(config.queuing) {
-          // add queuing
-          return;
-        }
+    const savedNotificationEntity = await notificationEntity.save();
 
-        return mail(savedNotificationEntity)
-      })
-      .then(async savedNotificationEntity => {
-        savedNotificationEntity.status = 'SENT';
+    if (config.queuing) {
+      // add queuing
+      return;
+    }
 
-        await savedNotificationEntity.save();
+    mail(savedNotificationEntity);
+    savedNotificationEntity.status = 'SENT';
 
-        return savedNotificationEntity;
-      })
-      .catch(e => console.log(e));
-  })
+    await savedNotificationEntity.save();
+
+    return savedNotificationEntity;
+  });
 }
 
 function mail(notification) {
-  console.log('SENT MAIL')
+  console.log('SENT MAIL');
 
   return notification;
 }
