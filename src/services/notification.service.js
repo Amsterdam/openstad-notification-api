@@ -1,17 +1,18 @@
 import db from '../bootstrap/sequelize';
 import { config } from '../config/app';
-import mjml2html from 'mjml'
 import { transporter } from '../bootstrap/notification/mail';
 
 const Notification = db.notification;
 
-function prepare(notificationInstance, user) {
+function prepare(user, subject, text, html) {
   return {
-    from: config.fromAddress,
-    to: String(user.email),
-    subject: notificationInstance.subject,
-    text: notificationInstance.text,
-    html: notificationInstance.html,
+    mail: {
+      from: config.fromAddress,
+      to: String(user.email),
+      subject: String(subject),
+      text: String(text),
+      html: String(html),
+    },
   };
 }
 
@@ -26,10 +27,10 @@ function send(notifications, body) {
       return;
     }
 
-    if(config.mailing) {
-      const mailSent = mail(savedNotificationEntity);
+    if (config.mailing) {
+      const mailSent = await sendMail(savedNotificationEntity);
 
-      if(mailSent) {
+      if (mailSent) {
         savedNotificationEntity.status = 'SENT';
 
         return await savedNotificationEntity.save();
@@ -40,12 +41,10 @@ function send(notifications, body) {
   });
 }
 
-async function mail(notification) {
-  const mailHTML = ;
+async function sendMail(mail) {
+  let info = await transporter.sendMail(mail);
 
-  let info = await transporter.sendMail({ ...notification });
-
-  console.log(info)
+  console.log(info);
 
   return info;
 }
