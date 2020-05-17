@@ -7,9 +7,17 @@ export function clientFactory(db) {
 
   return Template.create(
     {
-      label: 'test_template',
-      body: 'TEST template',
-      subject: 'TEST template',
+      label: 'newIdeaFeedbackToUser',
+      text: 'Nieuw idea: feedback aan gebruiker\n' +
+        '(opmerkingnTosh:) voorbeeld flow: \n' +
+        'Call naar REST EVENT ENDPOINT. with variables: resource (idea), users, config/other variables, and clientKey/ID\n' +
+        'Haal regels op basis van clientID op uit DB\n' +
+        'Check loop door UX gedifinieerde regels eventType === \'CREATE\' and resource === \'idea\' and users.id === resource.user.id\n' +
+        'Set email and if present name to the mailer\n' +
+        'Get template with id ...\n' +
+        'Pass variables to template\n' +
+        'Send formatted template',
+      subject: 'Nieuw idee!',
     }).then((template) => Client.bulkCreate([
       {
         label: 'Gemeente Amstelveen',

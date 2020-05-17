@@ -30,10 +30,11 @@ async function publish(request, response) {
         email: config.testAddress,
       };
 
+      console.log(templateService.resolve(ruleset.template, data).html)
       const emailData = {
         subject: ruleset.template.subject,
         text: 'text',
-        html: templateService.resolve(ruleset.template, data),
+        html: templateService.resolve(ruleset.template, data).html,
       }
 
       return notificationService.prepare(emailData, user);

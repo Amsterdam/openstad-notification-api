@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       unique: false,
     },
-    body: {
+    text: {
       type: DataTypes.BLOB,
+      allowNull: true,
+      unique: false,
+    },
+    templateFile: {
+      type: DataTypes.STRING,
       allowNull: true,
       unique: false,
     }
