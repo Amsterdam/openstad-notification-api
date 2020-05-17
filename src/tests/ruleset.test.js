@@ -10,7 +10,7 @@ test('TEST: ruleset.matches method rejects rulesets which do not match the data'
   expect(rulesetService.matches('', data)).toBe(false);
 });
 
-test('TEST: ruleset.matches method rejects rulesets which do not match the data', () => {
+test('TEST: ruleset.matches method approves rulesets which match the data', () => {
   const data = {
 
   }

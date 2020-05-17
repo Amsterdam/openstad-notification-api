@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { appConfig } from '../../config/app';
+import { config } from '../../config/app';
 
 /**
  *
@@ -10,7 +10,7 @@ export default (err, req, res, next) => {
     message: err.isPublic ? err.message : httpStatus[err.status],
   };
 
-  if(appConfig.environment === 'development') {
+  if(config.environment === 'development') {
     result.stack = err.stack
   }
 
