@@ -4,7 +4,7 @@ import { transporter } from '../bootstrap/notification/mail';
 
 const Notification = db.notification;
 
-function prepare(emailData) {
+function prepare(emailData, user) {
   return {
     mail: {
       from: config.fromAddress,
@@ -16,9 +16,9 @@ function prepare(emailData) {
   };
 }
 
-function send(mails) {
-  console.log(mails)
-  mails.forEach(async (mail) => {
+function send(notifications) {
+  notifications.forEach(async (notification) => {
+    const { mail } = notification;
     const notificationEntity = Notification.build({
       subject: mail.subject,
       to: mail.to,
