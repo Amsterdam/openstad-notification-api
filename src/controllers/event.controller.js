@@ -26,10 +26,11 @@ async function publish(request, response) {
 
   const notifications = rulesets.map((ruleset) => {
     if (rulesetService.match(ruleset, data)) {
-      const notificationInstance = templateService.resolve(ruleset.template, data);
       const user = {
         email: config.testAddress,
       };
+
+      const notificationInstance = templateService.resolve(ruleset.template, data);
 
       return notificationService.prepare(notificationInstance, user);
     }

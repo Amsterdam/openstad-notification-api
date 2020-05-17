@@ -1,5 +1,7 @@
 import db from '../bootstrap/sequelize';
 import { config } from '../config/app';
+import mjml2html from 'mjml'
+import { transporter } from '../bootstrap/notification/mail';
 
 const Notification = db.notification;
 
@@ -38,10 +40,14 @@ function send(notifications, body) {
   });
 }
 
-function mail(notification) {
-  console.log('SENT MAIL');
+async function mail(notification) {
+  const mailHTML = ;
 
-  return notification;
+  let info = await transporter.sendMail({ ...notification });
+
+  console.log(info)
+
+  return info;
 }
 
 export default {
