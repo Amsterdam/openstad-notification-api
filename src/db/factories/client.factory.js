@@ -1,4 +1,4 @@
-const notificationToAdmin = require('./json/notificationToAdmin.json')
+const newIdeaFeedbackToUser = require('./json/newIdeaFeedbackToUser.json')
 
 export function clientFactory(db) {
   const Client = db.client;
@@ -25,7 +25,7 @@ export function clientFactory(db) {
         rulesets: [
           {
             label: 'Notification to admin',
-            body: JSON.stringify(notificationToAdmin),
+            body: JSON.stringify(newIdeaFeedbackToUser),
             templateId: template.id,
           },
         ]
