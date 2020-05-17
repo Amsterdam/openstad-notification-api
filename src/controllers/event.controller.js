@@ -24,7 +24,7 @@ async function publish(request, response) {
   });
 
   const notifications = rulesets.map((ruleset) => {
-    if (rulesetService.match(ruleset, data)) {
+    if (rulesetService.matches(ruleset, data)) {
       const { template } = ruleset;
       const user = {
         email: config.testAddress,

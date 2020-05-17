@@ -1,9 +1,16 @@
 import jsonLogic from 'json-logic-js';
+import { isJson } from '../utils/string';
 
-function match(ruleset, data) {
-  return jsonLogic.apply(JSON.parse(ruleset.body), data)
+function matches(ruleset, data) {
+  const rulesetString = ruleset.body;
+
+  if(!isJson(rulesetString)){
+    return false;
+  }
+
+  return jsonLogic.apply(JSON.parse(rulesetString), data)
 }
 
 export default {
-  match,
+  matches,
 };
