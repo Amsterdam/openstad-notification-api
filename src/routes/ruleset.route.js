@@ -16,7 +16,7 @@ router.route('/:rulesetId')
   .delete(rulesetController.remove)
 
 router.route('/preview/:rulesetId')
-  .get(rulesetController.preview)
+  .post(rulesetController.preview)
 
 router.param('rulesetId', rulesetController.load);
 
