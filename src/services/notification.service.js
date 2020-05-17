@@ -24,10 +24,17 @@ function send(notifications, body) {
       return;
     }
 
-    mail(savedNotificationEntity);
-    savedNotificationEntity.status = 'SENT';
+    if(config.mailing) {
+      const mailSent = mail(savedNotificationEntity);
 
-    return await savedNotificationEntity.save();
+      if(mailSent) {
+        savedNotificationEntity.status = 'SENT';
+
+        return await savedNotificationEntity.save();
+      } else {
+        // mail send failure
+      }
+    }
   });
 }
 

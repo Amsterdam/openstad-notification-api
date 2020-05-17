@@ -8,5 +8,4 @@ export const config = {
   ...database,
   port: process.env.PORT,
   environment: process.env.ENVIRONMENT,
-  queuing: false,
 };

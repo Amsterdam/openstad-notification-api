@@ -12,4 +12,6 @@ export default {
   },
   fromAddress: process.env.MAIL_FROM_ADDRESS,
   testAddress: process.env.MAIL_TEST_EMAIL_ADDRESS,
+  queuing: false,
+  mailing: true,
 }
