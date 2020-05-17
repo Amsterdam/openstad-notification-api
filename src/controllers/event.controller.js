@@ -30,11 +30,13 @@ async function publish(request, response) {
         email: config.testAddress,
       };
 
-      const subject = ruleset.template.subject;
-      const text = 'text';
-      const html = templateService.resolve(ruleset.template, data);
+      const emailData = {
+        subject: ruleset.template.subject,
+        text: 'text',
+        html: templateService.resolve(ruleset.template, data),
+      }
 
-      return notificationService.prepare(user, subject, text, html);
+      return notificationService.prepare(emailData, user);
     }
   });
 

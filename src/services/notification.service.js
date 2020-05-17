@@ -4,19 +4,20 @@ import { transporter } from '../bootstrap/notification/mail';
 
 const Notification = db.notification;
 
-function prepare(user, subject, text, html) {
+function prepare(emailData) {
   return {
     mail: {
       from: config.fromAddress,
       to: String(user.email),
-      subject: String(subject),
-      text: String(text),
-      html: String(html),
+      subject: String(emailData.subject),
+      text: String(emailData.text),
+      html: String(emailData.html),
     },
   };
 }
 
 function send(mails) {
+  console.log(mails)
   mails.forEach(async (mail) => {
     const notificationEntity = Notification.build({
       subject: mail.subject,
