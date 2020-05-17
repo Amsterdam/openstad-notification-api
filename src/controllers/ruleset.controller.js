@@ -15,7 +15,6 @@ const remove = (request, response, next) => controller.remove(request, response,
  * @returns {Ruleset}
  */
 function preview(request, response) {
-  return response.json('qwsd3s');
   return response.json(JSON.parse(request.entity.body));
 }
 
