@@ -4,7 +4,6 @@ import templateService from '../services/template.service';
 import notificationService from '../services/notification.service';
 import { config } from '../config/app';
 
-const Event = db.event;
 const Ruleset = db.ruleset;
 const Template = db.template;
 
@@ -26,15 +25,15 @@ async function publish(request, response) {
 
   const notifications = rulesets.map((ruleset) => {
     if (rulesetService.match(ruleset, data)) {
+      const { template } = ruleset;
       const user = {
         email: config.testAddress,
       };
 
-      console.log(templateService.resolve(ruleset.template, data).html)
       const emailData = {
-        subject: ruleset.template.subject,
-        text: 'text',
-        html: templateService.resolve(ruleset.template, data).html,
+        subject: template.subject,
+        text: template.text,
+        html: templateService.resolve(template, data),
       }
 
       return notificationService.prepare(emailData, user);

@@ -1,4 +1,4 @@
-<mjml>
+export default `<mjml>
     <mj-head>
         <mj-title>Say hello to RealEstate</mj-title>
         <mj-font name="Alice" href="https://fonts.googleapis.com/css?family=Alice"/>
@@ -216,4 +216,4 @@
 
         </mj-container>
     </mj-body>
-</mjml>
+</mjml>`
