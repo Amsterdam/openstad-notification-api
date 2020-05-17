@@ -16,9 +16,15 @@ function prepare(user, subject, text, html) {
   };
 }
 
-function send(notifications, body) {
-  notifications.forEach(async (notification) => {
-    const notificationEntity = Notification.build({ ...notification });
+function send(mails) {
+  mails.forEach(async (mail) => {
+    const notificationEntity = Notification.build({
+      subject: mail.subject,
+      to: mail.to,
+      from: mail.from,
+      type: 'mail',
+      body: JSON.stringify({ text: mail.text, html: mail.html }),
+    });
 
     const savedNotificationEntity = await notificationEntity.save();
 
@@ -28,7 +34,7 @@ function send(notifications, body) {
     }
 
     if (config.mailing) {
-      const mailSent = await sendMail(savedNotificationEntity);
+      const mailSent = await sendMail(mail);
 
       if (mailSent) {
         savedNotificationEntity.status = 'SENT';

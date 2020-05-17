@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
-      defaultValue: 'new',
+      defaultValue: 'NEW',
     },
     to: {
       type: DataTypes.STRING,
@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       unique: false,
     },
     from: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+    },
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
