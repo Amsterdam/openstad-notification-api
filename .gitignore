@@ -39,3 +39,6 @@ typings/
 
 ### dist ##
 dist/*
+
+### jest code coverage ###
+coverage
