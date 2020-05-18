@@ -18,6 +18,7 @@ test('TEST: ruleset.matches method approves rulesets which match the data', () =
     userEmail: 'mitkoevoets@car.bl',
     resource: 'idea',
   };
+
   const ruleset = {
     body: JSON.stringify(newIdeaFeedbackToUser),
   }
