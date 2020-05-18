@@ -8,7 +8,7 @@ function matches(ruleset, data) {
     return false;
   }
 
-  return jsonLogic.apply(JSON.parse(rulesetString), data)
+  return jsonLogic.apply(JSON.parse(rulesetString), data);
 }
 
 export default {
