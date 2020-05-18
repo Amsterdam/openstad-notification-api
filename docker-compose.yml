@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   mysql:
+    container_name: openstad_notification_db
     image: "mysql:5"
     environment:
       MYSQL_ROOT_PASSWORD: "root"
@@ -16,23 +17,28 @@ services:
     networks:
       - openstad
 
-#  app:
-#    environment:
-#      ENVIRONMENT: "development"
-#      DB_HOST: "3306"
-#      DB_USER: "root"
-#      DB_PASSWORD: "root"
-#      DB_NAME: "openstad_notification"
-#    volumes:
-#      - ./image/images:/app/images
-#    build: .
-#    ports:
-#      - 9090:9090
-#    restart: unless-stopped
-#    networks:
-#      - openstad
-#    depends_on:
-#      - "mysql"
+  app:
+    environment:
+      ENVIRONMENT: "development"
+      DB_PORT: "3306"
+      DB_HOST: "openstad_notification_db"
+      DB_USER: "root"
+      DB_PASSWORD: "root"
+      DB_NAME: "openstad_notification"
+    volumes:
+      - ./image/images:/app/images
+    build: .
+    ports:
+      - 9090:9090
+    expose:
+      - 9090
+    restart: unless-stopped
+    networks:
+      - openstad
+    depends_on:
+      - "mysql"
+    command: npm run start
+
 volumes:
   database:
 networks:
